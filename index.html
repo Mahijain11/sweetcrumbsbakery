@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SweetCrumbs Bakery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --pink-light: #ffd1dc;
+      --pink-medium: #ff6f91;
+      --pink-dark: #c2185b;
+      --pink-gradient: linear-gradient(45deg, #ff6f91, #c2185b);
+      --white: #ffffff;
+      --gray-dark: #333333;
+      --gray-medium: #555555;
+      --shadow-light: rgba(255, 111, 145, 0.25);
+      --shadow-dark: rgba(194, 24, 91, 0.3);
+      --transition: 0.3s ease;
+    }
+
+    /* Reset and base */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body,
+    input,
+    button,
+    select,
+    textarea {
+      font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: var(--pink-light);
+      color: var(--gray-dark);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: var(--pink-dark);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color var(--transition);
+    }
+
+    a:hover,
+    a:focus {
+      color: var(--pink-medium);
+      outline: none;
+    }
+
+    /* Header and Navigation */
+    header {
+      background: var(--white);
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 4px 12px var(--shadow-light);
+      padding: 0.8rem 2rem;
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 2rem;
+      color: var(--pink-dark);
+      letter-spacing: 1.4px;
+      user-select: none;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2em;
+    }
+
+    nav ul li {
+      font-weight: 500;
+      font-size: 1rem;
+    }
+
+    nav ul li a {
+      padding: 0.3em 0.6em;
+      border-radius: 12px;
+      transition: background-color var(--transition), color var(--transition);
+    }
+
+    nav ul li a:hover,
+    nav ul li a:focus {
+      background-color: var(--pink-medium);
+      color: var(--white);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: var(--pink-gradient);
+      color: white;
+      padding: 5rem 2rem 7rem;
+      text-align: center;
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+      position: relative;
+    }
+
+    .hero h1 {
+      font-size: 3.8rem;
+      max-width: 800px;
+      margin: auto;
+      font-weight: 900;
+      text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+      line-height: 1.1;
+    }
+
+    .hero p {
+      margin: 1.2rem auto 2.5rem;
+      font-size: 1.35rem;
+      max-width: 600px;
+      font-weight: 500;
+      text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero-new-panel {
+      max-width: 650px;
+      margin: 0 auto 2rem;
+      padding: 2rem 2.5rem;
+      background-color: rgba(255 255 255 / 0.2);
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(255, 111, 145, 0.35);
+    }
+
+    .hero-new-panel h2 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+      letter-spacing: 1px;
+    }
+
+    .hero-new-panel .subtitle {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      opacity: 0.95;
+    }
+
+    .hero-new-panel p {
+      font-size: 1.2rem;
+      font-weight: 400;
+      opacity: 0.9;
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-new-panel .btn-group {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .hero-new-panel button {
+      background: var(--white);
+      color: var(--pink-dark);
+      padding: 0.9rem 2.5rem;
+      font-size: 1.15rem;
+      border-radius: 30px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 6px 10px rgba(255, 111, 145, 0.4);
+      transition: all var(--transition);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      min-width: 140px;
+      user-select: none;
+    }
+
+    .hero-new-panel button:hover,
+    .hero-new-panel button:focus {
+      background: var(--pink-medium);
+      color: var(--white);
+      box-shadow: 0 9px 14px rgba(194, 24, 91, 0.7);
+      outline: none;
+    }
+
+    .hero button {
+      background: var(--white);
+      color: var(--pink-dark);
+      padding: 1rem 3rem;
+      font-size: 1.25rem;
+      border-radius: 30px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 6px 10px rgba(255, 111, 145, 0.4);
+      transition: all var(--transition);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-top: 1.5rem;
+    }
+
+    .hero button:hover,
+    .hero button:focus {
+      background: var(--pink-medium);
+      color: var(--white);
+      box-shadow: 0 9px 14px rgba(194, 24, 91, 0.7);
+      outline: none;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 4rem auto 2rem;
+      padding: 0 2rem;
+      flex-grow: 1;
+    }
+
+    /* Section Titles */
+    section h2 {
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: var(--pink-dark);
+      border-bottom: 4px solid var(--pink-medium);
+      padding-bottom: 0.3rem;
+      margin-bottom: 1.8rem;
+      max-width: max-content;
+    }
+
+    /* Workshops & Loyalty Cards */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 2rem 1.75rem;
+      box-shadow: 0 6px 18px var(--shadow-light);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: box-shadow var(--transition);
+    }
+
+    .card:hover,
+    .card:focus-within {
+      box-shadow: 0 10px 25px var(--shadow-dark);
+      outline: none;
+    }
+
+    .card h3 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--pink-dark);
+      margin-bottom: 1rem;
+    }
+
+    .card p {
+      color: var(--gray-medium);
+      font-size: 1.1rem;
+      flex-grow: 1;
+    }
+
+    .card button {
+      margin-top: 1.5rem;
+      background-color: var(--pink-medium);
+      color: var(--white);
+      padding: 0.8rem 2.2rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 6px 10px rgba(255, 111, 145, 0.5);
+      transition: all var(--transition);
+      align-self: start;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .card button:hover,
+    .card button:focus {
+      background-color: var(--pink-dark);
+      box-shadow: 0 8px 16px rgba(194, 24, 91, 0.8);
+      outline: none;
+    }
+
+    /* Production Process */
+    .production-process p {
+      font-size: 1.15rem;
+      line-height: 1.6;
+      color: var(--gray-medium);
+      max-width: 800px;
+      margin: auto;
+      margin-bottom: 3rem;
+    }
+
+    /* Bakery Gallery */
+    .gallery-section {
+      margin-bottom: 3rem;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1.4rem;
+    }
+
+    .gallery img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px var(--shadow-light);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery img:hover,
+    .gallery img:focus {
+      outline: none;
+      transform: scale(1.06);
+      box-shadow: 0 10px 26px rgba(255, 111, 145, 0.7);
+    }
+
+    /* Health Benefits */
+    .health-benefits ul {
+      max-width: 720px;
+      margin: auto;
+      list-style-position: inside;
+      font-size: 1.15rem;
+      color: var(--gray-medium);
+      padding-left: 1em;
+      margin-bottom: 3rem;
+    }
+
+    .health-benefits ul li {
+      margin-bottom: 1rem;
+      font-weight: 500;
+      position: relative;
+      padding-left: 1.5em;
+    }
+
+    .health-benefits ul li::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--pink-medium);
+      font-weight: 700;
+      font-size: 1rem;
+      text-shadow: 0 0 4px var(--pink-light);
+    }
+
+    /* Customer Reviews */
+    .customer-reviews blockquote {
+      font-style: italic;
+      color: var(--pink-dark);
+      border-left: 6px solid var(--pink-medium);
+      margin: 1.2rem auto;
+      padding-left: 1.2rem;
+      max-width: 720px;
+      font-size: 1.25rem;
+      line-height: 1.5;
+      box-shadow: 2px 2px 8px var(--shadow-light);
+      border-radius: 8px;
+      background: var(--white);
+    }
+
+    /* Visit Us */
+    .visit-us {
+      max-width: 720px;
+      margin: 3rem auto;
+      background: var(--white);
+      border-radius: 18px;
+      padding: 2rem 2.5rem;
+      box-shadow: 0 6px 18px var(--shadow-light);
+      text-align: center;
+      user-select: none;
+    }
+
+    .visit-us p {
+      font-size: 1.15rem;
+      color: var(--gray-medium);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Newsletter */
+    .newsletter {
+      max-width: 600px;
+      margin: 2rem auto 5rem;
+      background: var(--white);
+      padding: 2.5rem 2rem 3rem;
+      border-radius: 18px;
+      box-shadow: 0 6px 18px var(--shadow-light);
+      text-align: center;
+    }
+
+    .newsletter h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--pink-dark);
+      margin-bottom: 1rem;
+    }
+
+    .newsletter p {
+      font-size: 1.1rem;
+      margin-bottom: 1.8rem;
+      color: var(--gray-medium);
+    }
+
+    .newsletter form {
+      display: flex;
+      gap: 0.8rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .newsletter input[type="email"] {
+      padding: 0.85rem 1.2rem;
+      font-size: 1rem;
+      border: 2px solid var(--pink-medium);
+      border-radius: 30px;
+      flex-grow: 1;
+      min-width: 250px;
+      transition: border-color var(--transition);
+    }
+
+    .newsletter input[type="email"]:focus {
+      outline: none;
+      border-color: var(--pink-dark);
+      box-shadow: 0 0 8px var(--pink-dark);
+    }
+
+    .newsletter button {
+      background-color: var(--pink-medium);
+      border: none;
+      padding: 0.85rem 2rem;
+      color: var(--white);
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 6px 10px rgba(255, 111, 145, 0.5);
+      transition: background-color var(--transition), box-shadow var(--transition);
+      min-width: 130px;
+      user-select: none;
+    }
+
+    .newsletter button:hover,
+    .newsletter button:focus {
+      background-color: var(--pink-dark);
+      box-shadow: 0 10px 18px rgba(194, 24, 91, 0.7);
+      outline: none;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--white);
+      text-align: center;
+      padding: 1.8rem 2rem;
+      font-size: 0.95rem;
+      color: var(--pink-dark);
+      box-shadow: 0 -4px 12px var(--shadow-light);
+      font-weight: 600;
+      user-select: none;
+    }
+
+    /* Social icons in footer */
+    .social-icons {
+      margin-top: 0.8rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.4rem;
+    }
+
+    .social-icons a {
+      color: var(--pink-dark);
+      font-size: 1.4rem;
+      transition: color var(--transition);
+    }
+
+    .social-icons a:hover,
+    .social-icons a:focus {
+      color: var(--pink-medium);
+    }
+
+    /* Responsive */
+    @media (max-width: 720px) {
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      nav ul {
+        gap: 1em;
+      }
+
+      .hero h1 {
+        font-size: 2.4rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .hero-new-panel .btn-group {
+        flex-direction: column;
+      }
+      .hero-new-panel button {
+        min-width: 100%;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .hero {
+        padding-bottom: 6rem;
+      }
+
+      nav ul {
+        display: none;
+      }
+    }
+  </style>
+  <script>
+    // Simple newsletter form validation + alert success
+    function handleNewsletterSubmit(event) {
+      event.preventDefault();
+      const emailInput = event.target.elements['email'];
+      const email = emailInput.value.trim();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!email) {
+        alert('Please enter your email address.');
+        emailInput.focus();
+        return;
+      }
+      if (!emailRegex.test(email)) {
+        alert('Please enter a valid email address.');
+        emailInput.focus();
+        return;
+      }
+      alert(`Thank you for subscribing, ${email}! We will keep you updated.`);
+      emailInput.value = '';
+    }
+  </script>
+</head>
+
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="logo" tabindex="0">SweetCrumbs Bakery</div>
+      <nav aria-label="Primary navigation">
+        <ul>
+          <li><a href="#workshops">Workshops</a></li>
+          <li><a href="#loyalty">Loyalty Program</a></li>
+          <li><a href="#production">Production</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#visit">Visit Us</a></li>
+          <li><a href="#newsletter">Newsletter</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" role="banner">
+    <div class="hero-new-panel" tabindex="0" aria-label="SweetCrumbs Bakery Promotional Panel">
+      <h2>SweetCrumbs Bakery – Love Baked Fresh Daily</h2>
+      <div class="subtitle">Bite into Happiness</div>
+      <p>Freshly baked cakes, breads &amp; desserts made with love in every crumb.</p>
+      <div class="btn-group">
+        <button aria-label="Order Now" onclick="window.location.href='#order'">Order Now</button>
+        <button aria-label="Book a Custom Cake" onclick="window.location.href='#custom-cake'">Book a Custom Cake</button>
+      </div>
+    </div>
+    <h1>Bake the World a Better Place with SweetCrumbs</h1>
+    <p>Join our weekend workshops with master pastry chefs and discover the art of baking. Beginners and pros welcome!</p>
+    <button onclick="document.getElementById('workshops').scrollIntoView({behavior:'smooth'})" aria-label="Book a workshop">Book a Workshop</button>
+  </section>
+
+  <main>
+
+    <section id="workshops" class="cards" tabindex="0" aria-label="Baking Workshops Section">
+      <article class="card">
+        <h3>Bake with Us!</h3>
+        <p>Learn the secrets of the oven with our weekend baking workshops, taught by our master pastry chef. Great for beginners or seasoned home bakers.</p>
+        <button aria-label="Book a workshop">Book a Workshop</button>
+      </article>
+
+      <article id="loyalty" class="card" tabindex="0" aria-label="Loyalty Program Section">
+        <h3>Loyalty Program — Earn Crumbs Points</h3>
+        <p>Every Crumb Counts! Sign up for our loyalty program to earn points with every purchase and redeem them for free goodies, discounts, and early access to new items.</p>
+        <button aria-label="Join loyalty program">Join Now</button>
+      </article>
+    </section>
+
+    <section id="production" class="production-process" tabindex="0" aria-label="Production Process Section">
+      <h2>Our Production Process</h2>
+      <p>We bake fresh daily using locally sourced, organic ingredients. Each item is handcrafted in small batches to ensure rich flavor and top quality.</p>
+      <p>Our breads are fermented naturally for 24+ hours to enhance taste and support better digestion. Every product reflects our commitment to tradition, quality, and care.</p>
+    </section>
+
+    <section id="gallery" class="gallery-section" tabindex="0" aria-label="Gallery of Bakery Items">
+      <h2>Our Bakery Items</h2>
+      <div class="gallery">
+        <img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=400&q=80" alt="Fresh strawberry cupcakes with pink frosting" tabindex="0" />
+        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=400&q=80" alt="Eclairs with chocolate topping" tabindex="0" />
+        <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=400&q=80" alt="Assorted colorful macarons in box" tabindex="0" />
+      </div>
+    </section>
+
+    <section class="health-benefits" tabindex="0" aria-label="Health Benefits Section">
+      <h2>Health Benefits</h2>
+      <ul>
+        <li>No artificial flavors, colors, or preservatives</li>
+        <li>Vegan, gluten-free, and low-sugar options available</li>
+        <li>Slow-fermented breads for improved gut health</li>
+        <li>Made with organic flour, fruits, and natural sweeteners</li>
+      </ul>
+    </section>
+
+    <section id="reviews" class="customer-reviews" tabindex="0" aria-label="Customer Reviews Section">
+      <h2>Customer Reviews</h2>
+      <blockquote>"Best cupcakes in town! They melt in your mouth."</blockquote>
+      <blockquote>"Their vegan banana bread changed my life."</blockquote>
+      <blockquote>"The custom cake was stunning and so delicious – the highlight of our party!"</blockquote>
+    </section>
+
+    <section id="visit" class="visit-us" tabindex="0" aria-label="Visit Us Section">
+      <h2>Visit Us</h2>
+      <p>SweetCrumbs Bakery<br />
+        123 Crumb Street, Bakersville, NY<br />
+        Open Daily: 7 AM – 7 PM<br />
+        Come in for a coffee and leave with a box of joy!
+      </p>
+    </section>
+
+    <section id="newsletter" class="newsletter" aria-label="Newsletter Signup Section">
+      <h2>Stay in the Loop</h2>
+      <p>Sign up for our newsletter to receive updates, limited-time deals, and sneak peeks of new menu items.</p>
+      <form onsubmit="handleNewsletterSubmit(event)" novalidate>
+        <input type="email" name="email" placeholder="Enter your email address" aria-label="Email address" required />
+        <button type="submit" aria-label="Subscribe to newsletter">Subscribe</button>
+      </form>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2025 SweetCrumbs Bakery — Crafted with love, baked with heart.</p>
+    <div class="social-icons" aria-label="Social media links">
+      <a href="#" aria-label="Instagram" tabindex="0" title="Instagram" target="_blank" rel="noopener noreferrer">
+        &#x1F4F7;
+      </a>
+      <a href="#" aria-label="Facebook" tabindex="0" title="Facebook" target="_blank" rel="noopener noreferrer">
+        &#x1F465;
+      </a>
+      <a href="#" aria-label="TikTok" tabindex="0" title="TikTok" target="_blank" rel="noopener noreferrer">
+        &#x1F3A4;
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    // Simple newsletter form validation + alert success
+    function handleNewsletterSubmit(event) {
+      event.preventDefault();
+      const emailInput = event.target.elements['email'];
+      const email = emailInput.value.trim();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!email) {
+        alert('Please enter your email address.');
+        emailInput.focus();
+        return;
+      }
+      if (!emailRegex.test(email)) {
+        alert('Please enter a valid email address.');
+        emailInput.focus();
+        return;
+      }
+      alert(`Thank you for subscribing, ${email}! We will keep you updated.`);
+      emailInput.value = '';
+    }
+  </script>
+</body>
+
+</html>
+</content>
+</create_file>
+
+<attempt_completion>
